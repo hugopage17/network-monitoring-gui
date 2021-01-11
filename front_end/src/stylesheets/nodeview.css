@@ -1,0 +1,67 @@
+#node-view-wrapper{
+  overflow: hidden;
+}
+
+.node-view-top{
+  margin: 10px;
+}
+
+.node-view-top h2{
+  float: left;
+}
+
+.node-options{
+  padding: 10px;
+  color:#5cd6ff;
+  font-size: 16px;
+  overflow: auto;
+}
+
+.node-options label{
+  float: left;
+  margin-left: 40px;
+  cursor: pointer;
+}
+
+.node-options label:hover{
+  text-shadow: 2px 2px 8px #5cd6ff;
+}
+
+.node-info-wrapper{
+  background-color: #0f0f0f;
+  height: 38vh;
+  border-top: 1px solid #5cd6ff;
+  
+  overflow: auto;
+}
+
+.each-ping{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 1px solid rgba(92, 214, 255, 0.5);
+  padding:10px;
+}
+
+.each-hop{
+  display: grid;
+  grid-template-columns: 0.25fr 0.25fr 0.25fr 0.5fr 1fr;
+  border-bottom: 1px solid rgba(92, 214, 255, 0.5);
+  padding:10px;
+}
+
+#ping-stats-wrapper{
+  margin: 10px;
+  float: right;
+}
+
+#ping-stats-wrapper label{
+  margin-left: 20px;
+}
+
+.minor-loss{
+  background-color: rgba(222, 0, 118,0.2);
+}
+
+.high-loss{
+  background-color: rgba(222, 0, 0,0.2);
+}

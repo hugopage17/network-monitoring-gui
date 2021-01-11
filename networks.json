@@ -1,0 +1,113 @@
+[
+  {
+    "name": "Test Network",
+    "nodes": [
+      {
+        "lat": -34.397,
+        "long": 150.644,
+        "address": "google.com",
+        "name": "Google"
+      },
+      {
+        "lat": -34.387,
+        "long": 150.487,
+        "name": "Youtube",
+        "address": "youtube.com"
+      },
+      {
+        "lat": -34.35,
+        "long": 150.967,
+        "address": "wandelapp.com",
+        "name": "Wandel"
+      },
+      {
+        "name": "Veva Development",
+        "lat": -34.36,
+        "address": "vevadev.co.nz",
+        "long": 150.7
+      },
+      {
+        "lat": -34.59,
+        "name": "poe-rept",
+        "long": 150.89,
+        "address": "10.167.4.44"
+      },
+      {
+        "long": 174.7878456,
+        "lat": -41.2486005,
+        "address": "192.168.1.254",
+        "name": "Test"
+      }
+    ]
+  },
+  {
+    "name": "Omoeroa",
+    "nodes": [
+      {
+        "address": "10.167.4.43",
+        "lat": -38.620597,
+        "long": 177.484203,
+        "name": "node1.omoeroa-solar-rept"
+      },
+      {
+        "lat": -38.620597,
+        "address": "10.167.4.44",
+        "long": 177.484203,
+        "name": "poe.omoeroa-solar-rept"
+      },
+      {
+        "long": 177.484203,
+        "lat": -38.620597,
+        "address": "10.167.4.50",
+        "name": "node2.omoeroa-solar-rept"
+      },
+      {
+        "lat": -38.6248,
+        "name": "node1.omoeroa-farm",
+        "long": 177.4875,
+        "address": "10.167.4.51"
+      },
+      {
+        "long": 177.4875,
+        "lat": -38.6248,
+        "address": "10.167.4.52",
+        "name": "cer.omoeroa-farm"
+      }
+    ]
+  },
+  {
+    "name": "Mahiwi",
+    "nodes": [
+      {
+        "address": "10.167.5.41",
+        "long": 177.244722,
+        "lat": -38.828611,
+        "name": "poe.mahiwi-solar-rept "
+      },
+      {
+        "name": "ara-mahiwi-solar-rept-2 ",
+        "long": 177.244722,
+        "lat": -38.828611,
+        "address": "10.167.5.42"
+      },
+      {
+        "name": "node1.mahiwi-farm ",
+        "lat": -38.829367,
+        "long": 177.248906,
+        "address": "10.167.5.43"
+      },
+      {
+        "address": "10.167.5.44",
+        "long": 177.248906,
+        "lat": -38.829367,
+        "name": "ara-mahiwi-farm-cer "
+      },
+      {
+        "name": "node1.mahiwi-solar-rept",
+        "long": 177.244722,
+        "address": "10.167.5.27",
+        "lat": -38.828611
+      }
+    ]
+  }
+]

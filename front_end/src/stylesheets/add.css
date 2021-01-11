@@ -1,0 +1,33 @@
+.nodes-to-add{
+  position: fixed;
+  background:black;
+  padding: 20px;
+  border:1px solid #5cd6ff;
+  border-radius: 5px;
+  width:50%;
+  top:5%;
+  left:20%;
+  height:80vh;
+}
+
+.all-nodes-found{
+  height: 80vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+.each-found-node{
+  width:100%;
+  padding: 10px;
+  border-bottom: 1px solid rgba(92, 214, 255, 0.5);
+  margin: 10px 0px 10px 0px;
+}
+
+.each-found-node input{
+  width:90%;
+  margin: 5px;
+}
+
+.each-found-node button{
+  width:90%;
+}
