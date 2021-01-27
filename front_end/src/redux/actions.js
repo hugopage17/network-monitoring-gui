@@ -28,12 +28,7 @@ export const setNode = (node) => ({
   payload:node
 })
 
-export const addLog = (logs) => ({
-  type:'ADD_LOG',
-  payload:logs
-})
-
-export const discoveredNodes = (nodes) => ({
-  type:'DISC_NODES',
-  payload:nodes
+export const setIndex = (index) => ({
+  type:'SET_INDEX',
+  payload:index
 })

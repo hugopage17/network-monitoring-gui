@@ -14,10 +14,12 @@ function AddNode(openAddPanel){
   const [subnet, toggleSub] = useState(false)
   const network = useSelector((state) => state.currentNetwork)
   const networks = useSelector((state) => state.appData.networks)
+  const netIndex = useSelector((state) => state.index)
 
   const dispatch = useDispatch()
   const selectNetwork = (network) => dispatch(setNetwork(network))
   const user = useSelector((state) => state.user)
+
 
   useEffect(()=>{
     document.getElementById('single-radio').checked = true
@@ -43,9 +45,8 @@ function AddNode(openAddPanel){
 
   const complete = () => {
     const index = networks.indexOf(network)
-    apiCall(`reload?index=${index}`, 'GET' , {}, user.uid).then((res)=>{
+    return apiCall(`reload?index=${index}`, 'GET' , {}, user.uid).then((res)=>{
       selectNetwork(res.response)
-      toggle(switchPanel => !switchPanel)
       openAddPanel()
     })
   }
@@ -69,8 +70,8 @@ function AddNode(openAddPanel){
           <button class='but-1' style={{float:'right'}} onClick={()=>{openAddPanel()}}>x</button>
         </div>
         <div hidden={!single}>{AddSingleNode(()=>{openAddPanel()})}</div>
-        <div hidden={!ip}>{IPScan(()=>{openAddPanel()})}</div>
-        <div hidden={!subnet}>{AddSubnet(()=>{openAddPanel()})}</div>
+        <div hidden={!ip}>{IPScan(user.uid, netIndex, complete)}</div>
+        <div hidden={!subnet}>{AddSubnet(user.uid, netIndex, complete)}</div>
       </div>
     </div>
   )

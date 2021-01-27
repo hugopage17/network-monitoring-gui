@@ -48,5 +48,10 @@ app.on('ready', ()=>{
         client.emit('end-subnet', 'done')
       })
     })
+    client.on('run-ssh', (data)=>{
+      funcs.sshCmd(data, (output)=>{
+        client.emit('ssh-output', output)
+      })
+    })
   })
 })

@@ -15,15 +15,17 @@ class LatencyStats extends Component{
   render(){
     const stats = this.props.ping
     const times = this.props.times
-    if(stats.res_avg){
-      let value = Number(stats.res_avg.split('.')[0])
-      if(value < this.state.min || this.state.min === 0){
-        this.setState({min:value})
+    try{
+      if(stats.res_avg){
+        let value = Number(stats.res_avg.split('.')[0])
+        if(value < this.state.min || this.state.min === 0){
+          this.setState({min:value})
+        }
+        if(value > this.state.max || this.state.max === 0){
+          this.setState({max:value})
+        }
       }
-      if(value > this.state.max || this.state.max === 0){
-        this.setState({max:value})
-      }
-    }
+    }catch(err){}
     const avg = getAvg(times)
     return(
       <span id='ping-stats-wrapper'>

@@ -8,8 +8,8 @@ function AddSingleNode(close){
 
   const [name, setName] = useState('Test')
   const [ip, setIP] = useState('192.168.1.254')
-  const [lat, setlat] = useState(-41.2486005)
-  const [long, setlong] = useState(174.7878456)
+  const [lat, setlat] = useState(0)
+  const [long, setlong] = useState(0)
   const user = useSelector((state) => state.user)
   const network = useSelector((state) => state.currentNetwork)
   const networks = useSelector((state) => state.appData.networks)

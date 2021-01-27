@@ -5,6 +5,10 @@ import PingHistory from './PingHistory'
 import Traceroute from './Traceroute'
 import LatencyStats from './LatencyStats'
 import socketIOClient from 'socket.io-client'
+import Ssh from './Ssh'
+import settingsIcon from '../../images/settings.png'
+import backArrow from '../../images/left-arrow.png'
+import Settings from './Settings.js'
 
 function NodeView(toggle, view){
   const [stats, getStats] = useState([])
@@ -16,6 +20,7 @@ function NodeView(toggle, view){
   const node = useSelector((state) => state.currentNode)
   const socket = socketIOClient('http://localhost:5000')
   const [running, isRunning] = useState(false)
+  const [showSettings, toggleSettings] = useState(true)
 
   useEffect(()=>{
     var container = document.getElementById('full-ping-wrapper')
@@ -59,7 +64,7 @@ function NodeView(toggle, view){
     return(
       <div id='node-view-wrapper'>
         <div class='node-view-top'>
-          <button class='but-1' style={{float:'left',marginRight:10}} onClick={back}>Back</button>
+          <button class='but-1' style={{float:'left',marginRight:10}} onClick={back}><img src={backArrow} width={16}/></button>
           <h2>{node.name}</h2>
           <LatencyStats ping={pingStats} times={times}/>
         </div>
@@ -67,6 +72,7 @@ function NodeView(toggle, view){
         <div class='node-options'>
           <label onClick={()=>{toggleInfo(true)}}>Latency Report</label>
           <label onClick={()=>{toggleInfo(false)}}>Traceroute</label>
+          <img src={settingsIcon} width={16} style={{float:'right',cursor:'pointer',marginRight:'10px'}} onClick={()=>{toggleSettings(showSettings => !showSettings)}}/>
         </div>
         <div class='node-info-wrapper' id='full-ping-wrapper'>
           <div hidden={!infoView}>
@@ -76,6 +82,7 @@ function NodeView(toggle, view){
             <Traceroute dest={node.address}/>
           </div>
         </div>
+        <div hidden={showSettings}><Settings data={node} close={()=>{toggleSettings(showSettings => !showSettings)}}/></div>
       </div>
     )
   }catch(err){}

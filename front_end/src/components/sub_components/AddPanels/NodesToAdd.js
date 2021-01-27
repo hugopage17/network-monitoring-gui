@@ -49,7 +49,7 @@ class NodesToAdd extends Component{
               </div>
             )
           })}
-          <button class='but-1' style={butStyle} onClick={this.addNodes}>Submit</button>
+          <button class='but-1' style={{...butStyle, width:'93%'}} onClick={this.addNodes}>Submit</button>
         </div>
       </div>
     )

@@ -5,7 +5,7 @@ import { map } from 'underscore'
 import '../../stylesheets/overview.css'
 import Loader from '../Loader'
 import Pulse from './Pulse.js'
-import {setNode, setNodeStatus} from '../../redux/actions'
+import {setNode, setNodeStatus, setIndex} from '../../redux/actions'
 import {responseTime} from '../../functions'
 import { Doughnut } from 'react-chartjs-2'
 import ToggleSwitch from './ToggleSwitch'
@@ -17,16 +17,20 @@ function NetworkOverview(toggle, view, openNodeAdd){
   const [viewMode, setView] = useState(true)
 
   const network = useSelector((state) => state.currentNetwork)
+  const networks = useSelector((state) => state.appData.networks)
   const socket = useSelector((state) => state.socket)
 
   const dispatch = useDispatch()
   const selectNode = (node) => dispatch(setNode(node))
   const changeNS = (nodes) => dispatch(setNodeStatus(nodes))
+  const changeIndex = (index) => dispatch(setIndex(index))
 
 
   useEffect(()=>{
     if(network && view === true){
       var arr = []
+      const index = networks.indexOf(network)
+      changeIndex(index)
       map(network.nodes, node => {arr.push(node.address)})
       var poller = setInterval(()=>{socket.emit('cluster-ping', arr)},2000)
       socket.on('cluster-ping', (data)=>{
@@ -58,15 +62,24 @@ function NetworkOverview(toggle, view, openNodeAdd){
 
 const filter = (value) => {
   let nodes
+  let otherNodes
   if(value === 'online'){
     nodes = document.getElementsByClassName('offline')
+    otherNodes = document.getElementsByClassName('online')
     for (var i = 0; i < nodes.length; i++) {
       nodes[i].style.display = "none";
     }
+    for (var i = 0; i < otherNodes.length; i++) {
+      otherNodes[i].style.display = ""
+    }
   }else if(value === 'offline'){
     nodes = document.getElementsByClassName('online')
+    otherNodes = document.getElementsByClassName('offline')
     for (var i = 0; i < nodes.length; i++) {
       nodes[i].style.display = "none";
+    }
+    for (var i = 0; i < otherNodes.length; i++) {
+      otherNodes[i].style.display = ""
     }
   }else{
     nodes = document.getElementsByClassName('each-node')

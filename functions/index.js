@@ -9,6 +9,8 @@ const io = require('socket.io')({
 
 const {dialog} = require('electron')
 const fs = require('fs')
+const { exec } = require('child_process');
+
 
 exports.startServer = () => {
   return io.listen(5000)
@@ -94,5 +96,19 @@ exports.getSubnet = (subnet, cb) => {
     return netScan.ipScan(net.host_range, (host)=>{
       cb(host)
     })
+  })
+}
+
+exports.sshCmd = (data, cb) => {
+  let port = data.port
+  if(port === null){
+    port = 22
+  }
+  return exec(`test_2 ${data.username} ${data.password} ${data.ip} ${port} interface%20print`, (err, stdout, stderr) => {
+      if (err) {
+        cb(err)
+      } else {
+        cb(stdout)
+      }
   })
 }

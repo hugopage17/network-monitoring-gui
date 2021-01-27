@@ -3,10 +3,8 @@ import {useState, useEffect} from 'react'
 import socketIOClient from 'socket.io-client'
 import {inputStyle, butStyle, style} from '../../../styleComponents'
 import NodesToAdd from './NodesToAdd'
-import {useSelector, useDispatch} from 'react-redux'
-import {setNetwork} from '../../../redux/actions'
 
-function IPScan(close){
+function IPScan(id, index, complete){
 
   const [range, setRange] = useState('192.168.1.194-198')
   const [width, setWidth] = useState(0)
@@ -16,12 +14,7 @@ function IPScan(close){
   const [i, addI] = useState(0)
   const [total, setTotal] = useState(0)
   const [switchPanel, toggle] = useState(true)
-  const user = useSelector((state) => state.user)
-  const network = useSelector((state) => state.currentNetwork)
-  const networks = useSelector((state) => state.appData.networks)
 
-  const dispatch = useDispatch()
-  const selectNetwork = (network) => dispatch(setNetwork(network))
 
   useEffect(()=>{
     socket.on('start-scan', (data)=>{
@@ -42,14 +35,12 @@ function IPScan(close){
     socket.emit('start-scan', range)
   }
 
-  const complete = () => {
-    const index = networks.indexOf(network)
-    apiCall(`reload?index=${index}`, 'GET' , {}, user.uid).then((res)=>{
-      selectNetwork(res.response)
+  const end = () => {
+    complete().then((res)=>{
       toggle(switchPanel => !switchPanel)
-      close()
     })
   }
+
 
   return(
     <div>
@@ -67,7 +58,7 @@ function IPScan(close){
             <div id="myBar" style={{width:`${width}%`}}></div>
           </div>
         </div>
-      ):(<NodesToAdd nodes={node} id={user.uid} network={networks.indexOf(network)} close={complete}/>)}
+      ):(<NodesToAdd nodes={node} id={id} network={index} close={end}/>)}
     </div>
   )
 }

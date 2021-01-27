@@ -11,8 +11,7 @@ const initialState = {
   currentNetwork:null,
   currentNode:null,
   nodeStatus:[],
-  logs:[],
-  discNodes:[]
+  index:0
 }
 
 export const store = createStore(
@@ -55,15 +54,10 @@ function reducer(state, action) {
         ...state,
         currentNode:action.payload
       }
-    case 'ADD_LOG':
+    case 'SET_INDEX':
       return{
         ...state,
-        logs:action.payload
-      }
-    case 'DISC_NODES':
-      return{
-        ...state,
-        discNodes:action.payload
+        index:action.payload
       }
     default:
       return state;

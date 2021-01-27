@@ -111,3 +111,15 @@ button{
 
   border-radius: 10px;
 }
+
+.settings-panel{
+  width:40%;
+  left:30%;
+  padding:10px;
+  height: 70vh;
+}
+
+.settings-panel input{
+  margin:10px;
+  width:80%;
+}

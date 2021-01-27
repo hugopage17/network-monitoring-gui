@@ -6,6 +6,7 @@ import {setNetwork} from '../redux/actions'
 import AddNetwork from './sub_components/AddPanels/AddNetwork'
 import {useState} from 'react'
 import {apiCall} from '../functions'
+import deleteImg from '../images/delete.png'
 
 function Sidebar() {
   const networks = useSelector((state) => state.appData.networks)
@@ -39,6 +40,10 @@ function Sidebar() {
      }, false)
   }
 
+  const deleteNetwork = (index) => {
+    apiCall('deletenetwork', 'DELETE', index, user.uid)
+  }
+
   return (
     <div id='sidebar'>
       <div id='sidebar-top'>
@@ -46,10 +51,12 @@ function Sidebar() {
       </div>
       <div>
         {map(networks, net => {
+          const index = networks.indexOf(net)
           return(
             <div onDoubleClick={()=>{selectNetwork(net)}} class='each-sidebar-network'>
               <h2>{net.name}</h2>
               <label>Nodes: {net.nodes.length}</label>
+              <img src={deleteImg} width={16} style={{float:'right'}}/>
             </div>
           )
         })}
